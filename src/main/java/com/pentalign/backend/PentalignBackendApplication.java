@@ -1,13 +1,13 @@
-package com.xofivegame.backend;
+package com.pentalign.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class XofiveBackendApplication {
+public class PentalignBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(XofiveBackendApplication.class, args);
+		SpringApplication.run(PentalignBackendApplication.class, args);
 	}
 
 }

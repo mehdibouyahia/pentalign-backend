@@ -28,14 +28,14 @@ This is the backend of a multiplayer online game inspired by Tic Tac Toe, develo
 ## Project Structure
 
 ```
-src/main/java/com/xofivegame/backend/
+src/main/java/com/pentalign/backend/
 ├── config         # Configuration classes
 ├── controller     # REST API controllers
 ├── model          # JPA Entities
 ├── repository     # Spring Data Repositories
 ├── service        # Business Logic
 ├── websocket      # WebSocket configuration & handlers
-└── XofiveBackendApplication.java
+└── PentalignBackendApplication.java
 ```
 
 ## Running the Project Locally
@@ -96,5 +96,4 @@ docker run -p 8080:8080 pentalign-backend
 ## Author
 
 Built with ❤️ by Elmehdi
-```
 

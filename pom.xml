@@ -8,10 +8,10 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.xofivegame</groupId>
-	<artifactId>xofive-backend</artifactId>
+	<groupId>com.pentaligngame</groupId>
+	<artifactId>pentalign-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>xofive-backend</name>
+	<name>pentalign-backend</name>
 	<description>Multiplayer XO game.</description>
 	<url/>
 	<licenses>
