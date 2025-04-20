@@ -34,8 +34,10 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1
         with:
-          organization: Ainz-Oowl-Gown
-          projectKey: ainz-oowl-gown
+          args: >
+            -Dsonar.organization=Ainz-Oowl-Gown
+            -Dsonar.projectKey=ainz-oowl-gown
+            -Dsonar.projectBaseDir=.
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
