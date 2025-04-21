@@ -22,7 +22,7 @@ public class Friend {
 
     @ManyToOne
     @JoinColumn(name = "friend_id")
-    private User friend;
+    private User userFriend;
 
     private String status;
 

@@ -2,7 +2,6 @@ package com.pentalign.backend.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Data

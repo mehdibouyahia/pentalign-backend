@@ -33,9 +33,6 @@ public class User implements UserDetails {
     @Column(nullable = false, name = "registered_at")
     private LocalDateTime registeredAt = LocalDateTime.now();
 
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();
