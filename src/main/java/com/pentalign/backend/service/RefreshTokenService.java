@@ -2,12 +2,13 @@ package com.pentalign.backend.service;
 
 import com.pentalign.backend.entities.RefreshToken;
 import com.pentalign.backend.entities.User;
+import com.pentalign.backend.exception.RefreshTokenExpiredException;
 import com.pentalign.backend.repository.RefreshTokenRepository;
 import com.pentalign.backend.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import jakarta.transaction.Transactional;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -69,7 +70,9 @@ public class RefreshTokenService {
     public void verifyExpiration(RefreshToken token) {
         if (token.getExpiryDate().isBefore(Instant.now())) {
             refreshTokenRepository.delete(token);
-            throw new RuntimeException("Refresh token expired. Please login again.");
+            throw new RefreshTokenExpiredException(
+                    "Refresh token expired on " + token.getExpiryDate() + ". Please login again."
+            );
         }
     }
 
