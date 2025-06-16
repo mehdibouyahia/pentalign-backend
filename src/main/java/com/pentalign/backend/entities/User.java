@@ -1,7 +1,11 @@
 package com.pentalign.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -21,15 +25,18 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NaturalId
     @Column(unique = true, nullable = false, length = 50)
     private String username;
 
+    @NaturalId
     @Column(unique = true, nullable = false, length = 100)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
+    @Builder.Default
     @Column(nullable = false, name = "registered_at")
     private LocalDateTime registeredAt = LocalDateTime.now();
 
@@ -38,23 +45,4 @@ public class User implements UserDetails {
         return Collections.emptyList();
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

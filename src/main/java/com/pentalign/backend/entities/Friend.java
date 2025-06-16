@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "friends")
+@Table(name = "friends",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "friend_id"}))
 public class Friend {
 
     @Id
@@ -17,15 +18,17 @@ public class Friend {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "friend_id")
+    @JoinColumn(name = "friend_id", nullable = false)
     private User userFriend;
 
+    @Column(nullable = false)
     private String status;
 
+    @Builder.Default
     @Column(nullable = false, name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 }

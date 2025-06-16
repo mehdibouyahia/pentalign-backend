@@ -1,13 +1,11 @@
 package com.pentalign.backend.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@Builder
-public class AuthResponse {
+public class TokenRefreshResponse {
     private String accessToken;
     private String refreshToken;
 }

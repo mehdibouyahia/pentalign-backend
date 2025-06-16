@@ -1,7 +1,12 @@
 package com.pentalign.backend.entities;
 
+import com.pentalign.backend.enums.GameStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,11 +33,20 @@ public class Game {
     @JoinColumn(name = "winner_id")
     private User winner;
 
+    @Builder.Default
     @Column(nullable = false, name = "started_at")
     private LocalDateTime startedAt = LocalDateTime.now();
 
     @Column(name = "ended_at")
     private LocalDateTime endedAt;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    @Builder.Default
+    private GameStatus status = GameStatus.WAITING;
+
+    @Transient
+    public boolean isDraw() {
+        return status == GameStatus.FINISHED && winner == null;
+    }
 }

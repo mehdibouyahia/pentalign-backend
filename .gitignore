@@ -65,3 +65,6 @@ docker-compose.override.yml
 # Misc
 node_modules/
 tmp/
+
+# TODO FILES
+todo.txt

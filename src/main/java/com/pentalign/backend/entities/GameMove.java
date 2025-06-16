@@ -5,29 +5,34 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "game_moves",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"game_id","move_order"}),
+                @UniqueConstraint(columnNames = {"game_id","row","col"})
+        })
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "game_moves")
 public class GameMove {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "game_id")
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
     @ManyToOne
-    @JoinColumn(name = "player_id")
+    @JoinColumn(name = "player_id", nullable = false)
     private User player;
 
+    @Column(name = "move_order", nullable = false)
     private int moveOrder;
-    private int row;
-    private int col;
+
+    @Column(nullable = false)
+    private int row, col;
 
     @Column(nullable = false, name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 }

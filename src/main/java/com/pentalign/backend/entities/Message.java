@@ -16,17 +16,16 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "sender_id")
+    @ManyToOne @JoinColumn(name = "sender_id", nullable = false)
     private User sender;
 
-    @ManyToOne
-    @JoinColumn(name = "receiver_id")
+    @ManyToOne @JoinColumn(name = "receiver_id", nullable = false)
     private User receiver;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @Builder.Default
     @Column(nullable = false, name = "sent_at")
     private LocalDateTime sentAt = LocalDateTime.now();
 }
