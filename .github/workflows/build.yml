@@ -28,6 +28,7 @@ jobs:
       DB_USERNAME: ${{ secrets.DB_USERNAME }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_REFRESH_EXPIRATION_MS: 604800000
       SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/pentalign
       SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
       SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -57,12 +58,6 @@ jobs:
             echo "Waiting for PostgreSQL..."
             sleep 2
           done
-
-      - name: Run tests
-        run: mvn clean test -Dspring.profiles.active=test
-
-      - name: Build application
-        run: mvn clean compile
 
       - name: Build, test, and analyze with SonarCloud
         run: mvn clean verify sonar:sonar -Dsonar.projectKey=ainz-oowl-gown -Dsonar.organization=ainz-oowl-gown -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=${{ secrets.SONAR_TOKEN }}
