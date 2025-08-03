@@ -59,7 +59,7 @@ class JwtServiceTest {
     }
 
     private void logTestInfo(String message, Object... args) {
-        logger.info("📝 " + message, args);
+        logger.info("📝 {}" , message, args);
     }
 
     private void logException(Exception exception) {
