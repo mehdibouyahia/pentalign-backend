@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class AuthenticationController {
 
     private final AuthenticationService authService;
     private final RefreshTokenService refreshTokenService;
@@ -61,5 +61,22 @@ public class AuthController {
         String newAccessToken = jwtService.generateToken(rt.getUser());
         return ResponseEntity.ok(new TokenRefreshResponse(newAccessToken, rt.getToken()));
     }
+
+    /**
+     * Logs out a user by invalidating their refresh token.
+     *
+     * @param request the logout request containing the refresh token to invalidate
+     * @return a response entity with a logout confirmation message
+     */
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@RequestBody TokenRefreshRequest request) {
+        RefreshToken rt = refreshTokenService.findByToken(request.getRefreshToken())
+                .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
+
+        refreshTokenService.deleteByUserId(rt.getUser().getId());
+
+        return ResponseEntity.ok("Logout successful");
+    }
+
 }
 
